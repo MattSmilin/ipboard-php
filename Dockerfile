@@ -13,11 +13,9 @@ RUN apk add --no-cache libpng-dev libjpeg-turbo-dev libzip-dev freetype-dev && \
 # Other php extensions
 RUN docker-php-ext-install mysqli zip exif
 
-# ssh2 if you'll be using sftp
-RUN set -eux; \
-   apk add --no-cache php7-pecl-ssh2 && \
-   docker-php-ext-enable ssh2;
-
+# ssh2 if you'll be using sftp       
+RUN apk add --no-cache php7-pecl-ssh2
+        
 # Memcached
 # Comment this section out if You are not planning to use it
 ENV MEMCACHED_DEPS zlib-dev libmemcached-dev cyrus-sasl-dev
