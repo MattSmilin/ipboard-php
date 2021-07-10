@@ -4,10 +4,8 @@ FROM php:7.4-fpm-alpine
 # GD
 RUN apk add --no-cache libpng-dev libjpeg-turbo-dev libzip-dev freetype-dev && \
    docker-php-ext-configure gd \
-   --with-gd \
-   --with-freetype=/usr/include/ \
-   --with-png=/usr/include/ \
-   --with-jpeg=/usr/include/ && \
+      --with-freetype \
+      --with-jpeg && \
    NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) && \
    docker-php-ext-install -j${NPROC} gd
 # Other php extensions
